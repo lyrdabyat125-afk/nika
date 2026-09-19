@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>نیکا مبل | زیبایی خانه، با انتخابی ماندگار</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF7F1; --sand:#EFE6D6; --sand-dark:#E2D5BC;
+    --charcoal:#1E1A16; --walnut:#4A3A2F; --walnut-dark:#332721;
+    --gold:#B08D52; --gold-light:#D4B683; --gold-dark:#8B6C3A;
+    --shadow-soft: 0 8px 30px rgba(30,26,22,.07);
+    --shadow-lift: 0 18px 45px rgba(30,26,22,.14);
+    --r: 10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--cream);color:var(--charcoal);line-height:1.75;overflow-x:hidden;}
+  .container{max-width:1360px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+  button{font-family:inherit;cursor:pointer;}
+  ::selection{background:var(--gold);color:#fff;}
+  ::-webkit-scrollbar{width:9px;}
+  ::-webkit-scrollbar-track{background:var(--cream);}
+  ::-webkit-scrollbar-thumb{background:var(--sand-dark);border-radius:99px;}
+
+  .demo-note{background:var(--charcoal);color:#e8dcc5;font-size:12.5px;text-align:center;padding:10px 16px;}
+  .demo-note b{color:var(--gold-light);}
+
+  .blob{position:absolute;border-radius:50%;pointer-events:none;z-index:0;opacity:.5;}
+  .blob-gold{background:radial-gradient(circle, rgba(176,141,82,.16), transparent 70%);}
+  .blob-sand{background:radial-gradient(circle, rgba(226,213,188,.5), transparent 70%);}
+
+  header{position:sticky;top:0;z-index:100;background:rgba(250,247,241,.9);border-bottom:1px solid rgba(30,26,22,.06);transition:height .25s, box-shadow .25s;}
+  @supports (backdrop-filter: blur(1px)){ header{ background:rgba(250,247,241,.72); backdrop-filter:blur(10px) saturate(150%);} }
+  header.scrolled{box-shadow:0 4px 20px rgba(30,26,22,.06);}
+  .navwrap{display:flex;align-items:center;justify-content:space-between;height:80px;transition:height .25s;}
+  header.scrolled .navwrap{height:64px;}
+  .logo{font-weight:800;font-size:21px;letter-spacing:.3px;color:var(--walnut);cursor:pointer;}
+  nav.desktop-nav{display:flex;gap:34px;}
+  nav.desktop-nav a{position:relative;font-size:14.5px;font-weight:600;color:rgba(30,26,22,.65);padding:4px 0;cursor:pointer;transition:color .2s;}
+  nav.desktop-nav a.active{color:var(--charcoal);}
+  nav.desktop-nav a::after{content:'';position:absolute;bottom:-2px;right:0;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold-dark));transition:width .25s;}
+  nav.desktop-nav a:hover::after, nav.desktop-nav a.active::after{width:100%;}
+  .nav-icons{display:flex;align-items:center;gap:18px;}
+  .icon-btn{position:relative;width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;color:var(--charcoal);border-radius:50%;transition:background .2s,color .2s;}
+  .icon-btn:hover{background:rgba(176,141,82,.14);color:var(--gold-dark);}
+  .icon-btn svg{width:19px;height:19px;}
+  .count-pill{position:absolute;top:-2px;left:-2px;min-width:17px;height:17px;padding:0 4px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-size:10px;font-weight:700;border-radius:99px;display:flex;align-items:center;justify-content:center;transform:scale(0);transition:transform .25s cubic-bezier(.34,1.56,.64,1);}
+  .count-pill.show{transform:scale(1);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:99px;font-size:13.5px;font-weight:700;border:none;transition:transform .2s, box-shadow .2s, background .2s;white-space:nowrap;}
+  .btn-primary{background:linear-gradient(135deg,var(--walnut),var(--walnut-dark));color:#fdf9f0;box-shadow:0 6px 18px rgba(74,58,47,.28);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(74,58,47,.38);}
+  .btn-outline{background:transparent;border:1.5px solid rgba(30,26,22,.18);color:var(--charcoal);}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold-dark);}
+  .btn-ghost-light{background:rgba(253,249,240,.08);border:1.5px solid rgba(253,249,240,.35);color:#fdf9f0;}
+  .btn-ghost-light:hover{background:rgba(253,249,240,.16);}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none !important;}
+  .burger{display:none;width:38px;height:38px;border:none;background:transparent;color:var(--charcoal);}
+  .burger svg{width:24px;height:24px;}
+
+  .mobile-menu{position:fixed;inset:0;z-index:200;background:var(--cream);display:none;flex-direction:column;padding:24px;transform:translateX(100%);transition:transform .3s cubic-bezier(.65,0,.35,1);}
+  .mobile-menu.open{display:flex;transform:translateX(0);}
+  .mobile-menu-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;}
+  .mobile-menu a{display:block;font-size:19px;font-weight:700;padding:15px 0;border-bottom:1px solid rgba(30,26,22,.08);}
+
+  .marquee-wrap{background:var(--walnut-dark);overflow:hidden;padding:12px 0;}
+  .marquee{display:flex;width:max-content;animation:scroll-left 26s linear infinite;}
+  .marquee span{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-size:13px;font-weight:600;padding:0 28px;white-space:nowrap;}
+  .marquee span i{width:4px;height:4px;border-radius:50%;background:rgba(212,182,131,.5);}
+  @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  .hero{position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#171310;}
+  .hero-bg{position:absolute;inset:0;}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.65;animation:heroFade 1.4s ease both;}
+  @keyframes heroFade{from{opacity:0;transform:scale(1.05)}to{opacity:.65;transform:scale(1)}}
+  .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(23,19,16,.35) 0%, rgba(23,19,16,.2) 40%, rgba(23,19,16,.95) 100%);}
+  .hero-content{position:relative;z-index:2;max-width:760px;padding:100px 24px 60px;color:#fdf9f0;}
+  .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(253,249,240,.08);border:1px solid rgba(212,182,131,.4);color:var(--gold-light);font-size:12.5px;font-weight:700;padding:8px 18px;border-radius:99px;margin-bottom:26px;letter-spacing:.3px;}
+  .hero h1{font-size:clamp(32px,5.2vw,58px);font-weight:800;margin-bottom:20px;line-height:1.28;letter-spacing:-.5px;}
+  .hero p{font-size:clamp(15px,1.6vw,17.5px);opacity:.82;margin-bottom:36px;max-width:540px;margin-inline:auto;}
+  .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:56px;}
+
+  .hero-stats{position:relative;z-index:2;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;padding-bottom:40px;}
+  .stat-glass{background:rgba(253,249,240,.07);border:1px solid rgba(253,249,240,.15);border-radius:var(--r);padding:16px 26px;text-align:center;min-width:130px;}
+  @supports (backdrop-filter: blur(1px)){ .stat-glass{backdrop-filter:blur(6px);} }
+  .stat-glass b{display:block;font-size:22px;font-weight:800;color:var(--gold-light);}
+  .stat-glass span{font-size:11.5px;color:rgba(253,249,240,.65);}
+
+  .page-header{position:relative;padding:80px 0 54px;text-align:center;overflow:hidden;background:var(--sand);}
+  .page-header h1{font-size:clamp(28px,3.5vw,40px);font-weight:800;margin-bottom:12px;}
+  .page-header p{color:rgba(30,26,22,.6);max-width:520px;margin:0 auto;font-size:15px;}
+
+  section{padding:96px 0;position:relative;}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .heading{max-width:640px;margin:0 auto 48px;text-align:center;position:relative;z-index:1;}
+  .heading .eyebrow{color:var(--gold-dark);font-size:13px;font-weight:700;letter-spacing:1.2px;margin-bottom:12px;text-transform:uppercase;}
+  .heading h2{font-size:clamp(26px,3vw,36px);font-weight:800;margin-bottom:14px;letter-spacing:-.3px;}
+  .heading p{color:rgba(30,26,22,.6);font-size:15.5px;}
+
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:1;}
+  .cat-card{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-soft);transition:transform .35s, box-shadow .35s;background:var(--sand);}
+  .cat-card:hover{box-shadow:var(--shadow-lift);transform:translateY(-6px);}
+  .cat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(23,19,16,.7), rgba(23,19,16,.05) 55%);z-index:1;}
+  .cat-card img{transition:transform .5s ease;}
+  .cat-card:hover img{transform:scale(1.07);}
+  .cat-label{position:absolute;bottom:0;right:0;left:0;z-index:2;padding:20px;}
+  .cat-label span{color:#fdf9f0;font-weight:700;font-size:16.5px;display:block;}
+  .cat-label small{color:rgba(253,249,240,.65);font-size:11.5px;display:flex;align-items:center;gap:6px;margin-top:6px;opacity:0;transform:translateY(6px);transition:opacity .25s, transform .25s;}
+  .cat-card:hover .cat-label small{opacity:1;transform:translateY(0);}
+
+  .prod-section{background:linear-gradient(180deg, var(--sand) 0%, var(--sand-dark) 100%);}
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:1;}
+  .prod-card{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-soft);transition:transform .3s, box-shadow .3s;position:relative;}
+  .prod-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);}
+  .prod-img{position:relative;aspect-ratio:1/1;background:var(--sand);overflow:hidden;}
+  .prod-img img{transition:transform .5s ease;}
+  .prod-card:hover .prod-img img{transform:scale(1.08);}
+  .badge{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#c0392b,#96291d);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:99px;z-index:3;}
+  .badge-oos{position:absolute;top:12px;right:12px;background:rgba(30,26,22,.75);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:99px;z-index:3;}
+  .wish-btn{position:absolute;top:12px;left:12px;z-index:3;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.94);border:none;display:flex;align-items:center;justify-content:center;color:var(--charcoal);transition:transform .2s;box-shadow:0 4px 10px rgba(0,0,0,.12);}
+  .wish-btn svg{width:16px;height:16px;}
+  .wish-btn:hover{transform:scale(1.1);}
+  .wish-btn.active svg{fill:#c0392b;stroke:#c0392b;}
+  .quick-view{position:absolute;left:0;right:0;bottom:-46px;z-index:3;background:rgba(30,26,22,.88);color:#fdf9f0;text-align:center;padding:11px;font-size:12.5px;font-weight:600;transition:bottom .28s;}
+  .prod-card:hover .quick-view{bottom:0;}
+  .prod-body{padding:18px;}
+  .prod-cat{font-size:11px;color:var(--gold-dark);font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+  .prod-name{font-weight:700;margin:7px 0 9px;font-size:15.5px;}
+  .price-row{display:flex;align-items:baseline;gap:9px;margin-bottom:15px;flex-wrap:wrap;}
+  .price{font-weight:800;font-size:16.5px;color:var(--charcoal);}
+  .old-price{font-size:12.5px;color:rgba(30,26,22,.35);text-decoration:line-through;}
+  .prod-actions{display:flex;gap:10px;}
+  .view-btn{flex:1;border:1.5px solid rgba(30,26,22,.14);border-radius:99px;text-align:center;padding:10px;font-size:12.5px;font-weight:700;transition:border-color .2s, color .2s;background:transparent;color:var(--charcoal);}
+  .view-btn:hover{border-color:var(--gold);color:var(--gold-dark);}
+  .cart-btn{width:42px;height:42px;flex-shrink:0;background:linear-gradient(135deg,var(--walnut),var(--walnut-dark));color:#fdf9f0;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;transition:transform .15s;}
+  .cart-btn svg{width:17px;height:17px;}
+  .cart-btn:hover{transform:scale(1.08);}
+  .cart-btn.pulsing{animation:pulse .35s ease;}
+  .cart-btn:disabled{background:rgba(30,26,22,.2);}
+  @keyframes pulse{0%{transform:scale(1)}45%{transform:scale(.85)}100%{transform:scale(1)}}
+  .more-wrap{text-align:center;margin-top:44px;position:relative;z-index:1;}
+
+  .filter-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;}
+  .chip{padding:10px 20px;border-radius:99px;border:1.5px solid rgba(30,26,22,.14);background:#fff;font-size:13px;font-weight:700;color:rgba(30,26,22,.65);transition:.2s;}
+  .chip:hover{border-color:var(--gold);color:var(--gold-dark);}
+  .chip.active{background:linear-gradient(135deg,var(--walnut),var(--walnut-dark));border-color:var(--walnut);color:#fdf9f0;}
+  .result-count{color:rgba(30,26,22,.5);font-size:13px;}
+  .toolbar-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:28px;}
+  .sort-select{padding:10px 16px;border-radius:99px;border:1.5px solid rgba(30,26,22,.15);background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:var(--charcoal);}
+  .sort-select:focus{outline:none;border-color:var(--gold);}
+
+  .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:1;}
+  .trust-card{background:#fff;border-radius:var(--r);padding:32px 26px;box-shadow:var(--shadow-soft);transition:transform .3s, box-shadow .3s;}
+  .trust-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);}
+  .trust-icon{width:48px;height:48px;border-radius:50%;background:rgba(176,141,82,.12);display:flex;align-items:center;justify-content:center;color:var(--gold-dark);margin-bottom:16px;}
+  .trust-icon svg{width:22px;height:22px;}
+  .trust-card h3{margin-bottom:9px;font-size:16px;}
+  .trust-card p{font-size:13.5px;color:rgba(30,26,22,.6);}
+
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:1;}
+  .testi-card{background:#fff;border-radius:var(--r);padding:28px;box-shadow:var(--shadow-soft);}
+  .stars{color:var(--gold);font-size:14px;margin-bottom:13px;letter-spacing:2px;}
+  .testi-text{font-size:14px;color:rgba(30,26,22,.75);margin-bottom:18px;}
+  .testi-person{display:flex;align-items:center;gap:12px;}
+  .avatar{width:38px;height:38px;border-radius:50%;background:var(--sand-dark);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--walnut);font-size:13px;}
+  .testi-name{font-weight:700;font-size:13.5px;}
+  .testi-role{font-size:11.5px;color:rgba(30,26,22,.5);}
+
+  .newsletter{background:linear-gradient(135deg,var(--walnut-dark),#241b16);border-radius:16px;padding:56px 40px;text-align:center;color:#fdf9f0;position:relative;overflow:hidden;z-index:1;}
+  .newsletter h2{font-size:26px;font-weight:800;margin-bottom:10px;}
+  .newsletter p{opacity:.68;margin-bottom:28px;font-size:14px;}
+  .newsletter-form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+  .newsletter-form input{flex:1;min-width:220px;padding:14px 18px;border-radius:99px;border:1px solid rgba(253,249,240,.2);background:rgba(253,249,240,.06);color:#fdf9f0;font-family:inherit;font-size:14px;}
+  .newsletter-form input::placeholder{color:rgba(253,249,240,.4);}
+  .newsletter-form input:focus{outline:none;border-color:var(--gold);}
+
+  footer{background:var(--charcoal);color:rgba(250,247,241,.75);padding:64px 0 0;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:40px;padding-bottom:44px;}
+  .footer-grid h3{color:#fdf9f0;font-size:20px;font-weight:800;margin-bottom:12px;}
+  .footer-grid h4{color:#fdf9f0;margin-bottom:15px;font-size:14px;font-weight:700;}
+  .footer-grid ul{list-style:none;}
+  .footer-grid li{margin-bottom:10px;font-size:13px;}
+  .footer-grid li a:hover{color:var(--gold-light);}
+  .footer-bottom{border-top:1px solid rgba(250,247,241,.08);text-align:center;padding:18px 0;font-size:11.5px;color:rgba(250,247,241,.35);}
+
+  .toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,120%);background:var(--charcoal);color:#fdf9f0;padding:14px 24px;border-radius:99px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:9px;box-shadow:0 12px 28px rgba(0,0,0,.25);z-index:400;transition:transform .35s cubic-bezier(.34,1.56,.64,1);}
+  .toast.show{transform:translate(-50%,0);}
+  .toast svg{width:15px;height:15px;color:var(--gold-light);flex-shrink:0;}
+
+  .overlay{position:fixed;inset:0;background:rgba(23,19,16,.5);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;}
+  .overlay.open{opacity:1;pointer-events:auto;}
+  .cart-drawer{position:fixed;top:0;bottom:0;left:0;width:410px;max-width:92vw;background:var(--cream);z-index:310;transform:translateX(-100%);transition:transform .35s cubic-bezier(.65,0,.35,1);display:flex;flex-direction:column;box-shadow:20px 0 50px rgba(0,0,0,.2);}
+  .cart-drawer.open{transform:translateX(0);}
+  .cart-header{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid rgba(30,26,22,.08);}
+  .cart-header h3{font-size:17px;font-weight:800;display:flex;align-items:center;gap:9px;}
+  .cart-header h3 svg{width:19px;height:19px;color:var(--gold-dark);}
+  .cart-close{width:32px;height:32px;border-radius:50%;border:none;background:rgba(30,26,22,.06);display:flex;align-items:center;justify-content:center;}
+  .cart-close svg{width:15px;height:15px;}
+  .cart-items{flex:1;overflow-y:auto;padding:14px 22px;}
+  .cart-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;color:rgba(30,26,22,.45);gap:12px;padding:40px;}
+  .cart-empty svg{width:44px;height:44px;opacity:.4;}
+  .cart-item{display:flex;gap:13px;padding:15px 0;border-bottom:1px solid rgba(30,26,22,.06);}
+  .cart-item img{width:70px;height:70px;border-radius:8px;flex-shrink:0;background:var(--sand);}
+  .cart-item-info{flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+  .cart-item-name{font-size:13.5px;font-weight:700;}
+  .cart-item-price{font-size:12.5px;color:rgba(30,26,22,.55);}
+  .qty-row{display:flex;align-items:center;justify-content:space-between;}
+  .qty-stepper{display:flex;align-items:center;border:1px solid rgba(30,26,22,.15);border-radius:99px;}
+  .qty-stepper button{width:24px;height:24px;border:none;background:transparent;font-size:14px;color:var(--charcoal);}
+  .qty-stepper span{width:22px;text-align:center;font-size:12.5px;font-weight:700;}
+  .remove-btn{color:#b91c1c;background:none;border:none;font-size:11.5px;display:flex;align-items:center;gap:4px;}
+  .remove-btn svg{width:13px;height:13px;}
+  .cart-footer{border-top:1px solid rgba(30,26,22,.08);padding:20px 22px 24px;}
+  .cart-row{display:flex;justify-content:space-between;font-size:13px;color:rgba(30,26,22,.6);margin-bottom:9px;}
+  .cart-total-row{display:flex;justify-content:space-between;font-size:15.5px;font-weight:800;margin:13px 0 18px;padding-top:13px;border-top:1px dashed rgba(30,26,22,.15);}
+
+  .view{transition:opacity .28s ease;}
+  .view-hidden{opacity:0;position:absolute;inset:0;pointer-events:none;visibility:hidden;}
+  .cv-auto{content-visibility:auto;contain-intrinsic-size:1px 900px;}
+
+  @media(max-width:960px){
+    nav.desktop-nav, .nav-icons .btn-primary{display:none;}
+    .burger{display:flex;align-items:center;justify-content:center;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .trust,.testi-grid{grid-template-columns:1fr;}
+    section{padding:60px 0;}
+    .cart-drawer{width:100vw;max-width:100vw;}
+    .hero-stats{gap:10px;}
+    .stat-glass{padding:12px 18px;min-width:100px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-note">پیش‌نمایش نیکا مبل — <b>همه‌ی دکمه‌ها فعالن</b> (سبد خرید، علاقه‌مندی‌ها، فیلتر و مرتب‌سازی). این یه دمو مستقل از فرانت‌اندِ سایته و به دیتابیس/بک‌اند وصل نیست.</div>
+
+<header id="header">
+  <div class="container navwrap">
+    <div class="logo" onclick="goTo('home')">نیکا مبل</div>
+    <nav class="desktop-nav">
+      <a class="nav-link active" data-view="home" onclick="goTo('home')">خانه</a>
+      <a class="nav-link" data-view="products" onclick="goTo('products')">محصولات</a>
+      <a onclick="goTo('home'); setTimeout(()=>document.getElementById('about').scrollIntoView(),60)">درباره ما</a>
+      <a onclick="goTo('home'); setTimeout(()=>document.getElementById('contact').scrollIntoView(),60)">تماس با ما</a>
+    </nav>
+    <div class="nav-icons">
+      <button class="icon-btn" id="wishNavBtn" title="علاقه‌مندی‌ها">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        <span class="count-pill" id="wishCount">0</span>
+      </button>
+      <button class="icon-btn" id="cartNavBtn" title="سبد خرید" onclick="openCart()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="count-pill" id="cartCount">0</span>
+      </button>
+      <button class="btn btn-primary" onclick="goTo('products')">مشاهده محصولات</button>
+      <button class="burger" id="burgerBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span><i></i>ارسال به سراسر کشور</span>
+      <span><i></i>گارانتی تا ۵ سال</span>
+      <span><i></i>مشاوره دکوراسیون رایگان</span>
+      <span><i></i>ضمانت اصالت کالا</span>
+      <span><i></i>ارسال به سراسر کشور</span>
+      <span><i></i>گارانتی تا ۵ سال</span>
+      <span><i></i>مشاوره دکوراسیون رایگان</span>
+      <span><i></i>ضمانت اصالت کالا</span>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-top">
+    <div class="logo">نیکا مبل</div>
+    <button class="icon-btn" id="closeMenuBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <a onclick="goTo('home')">خانه</a>
+  <a onclick="goTo('products')">محصولات</a>
+  <a onclick="goTo('home'); setTimeout(()=>document.getElementById('about').scrollIntoView(),80)">درباره ما</a>
+  <a onclick="goTo('home'); setTimeout(()=>document.getElementById('contact').scrollIntoView(),80)">تماس با ما</a>
+</div>
+
+<div id="view-home" class="view">
+  <section class="hero" id="top">
+    <div class="hero-bg"><img id="heroImg" src="" alt="نمایشگاه مبلمان نیکا مبل" /></div>
+    <div class="hero-content">
+      <span class="eyebrow-pill">✦ نیکا مبل — مبلمانی که سبک زندگی شما را تعریف می‌کند</span>
+      <h1>خانه‌ای که همیشه آرزویش را داشتید، از همین‌جا شروع می‌شود</h1>
+      <p>مجموعه‌ای منتخب از مبلمان مدرن و کلاسیک با طراحی امروزی، ساخت بادوام و کیفیتی که در هر جزئیاتش حس می‌شود.</p>
+      <div class="hero-btns">
+        <button class="btn btn-primary" onclick="goTo('products')">مشاهده محصولات</button>
+        <button class="btn btn-ghost-light" onclick="document.getElementById('contact').scrollIntoView()">تماس با ما</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-glass"><b>+۵۰۰</b><span>مشتری راضی</span></div>
+      <div class="stat-glass"><b>۲۴</b><span>مدل مبلمان</span></div>
+      <div class="stat-glass"><b>۵ سال</b><span>گارانتی</span></div>
+      <div class="stat-glass"><b>۴.۹</b><span>امتیاز مشتریان</span></div>
+    </div>
+  </section>
+
+  <section id="categories" class="container reveal">
+    <div class="blob blob-gold" style="width:420px;height:420px;top:-100px;left:-150px;"></div>
+    <div class="heading">
+      <p class="eyebrow">دسته‌بندی محصولات</p>
+      <h2>مبلمانی برای هر فضا</h2>
+      <p>از نشیمن‌های راحتی گرفته تا میزهای ناهارخوری و اکسسوری، مجموعه کاملی برای دکوراسیون خانه شما.</p>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </section>
+
+  <section class="prod-section cv-auto">
+    <div class="container reveal">
+      <div class="heading">
+        <p class="eyebrow">پرفروش‌ترین‌ها</p>
+        <h2>محبوب‌ترین محصولات</h2>
+        <p>انتخاب مشتریان نیکا مبل از میان مدل‌های مدرن و کلاسیک.</p>
+      </div>
+      <div class="prod-grid" id="featuredGrid"></div>
+      <div class="more-wrap"><button class="btn btn-outline" onclick="goTo('products')">مشاهده همه محصولات</button></div>
+    </div>
+  </section>
+
+  <section class="container reveal cv-auto">
+    <div class="blob blob-sand" style="width:500px;height:500px;top:0;right:-200px;"></div>
+    <div class="heading">
+      <p class="eyebrow">چرا نیکا مبل</p>
+      <h2>تعهد ما به کیفیت</h2>
+    </div>
+    <div class="trust">
+      <div class="trust-card">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"/></svg></div>
+        <h3>گارانتی تا ۵ سال</h3>
+        <p>ضمانت کیفیت ساخت و روکش تمامی محصولات نیکا مبل.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>ارسال به سراسر کشور</h3>
+        <p>ارسال ایمن و بسته‌بندی حرفه‌ای از ملایر به سراسر کشور.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg></div>
+        <h3>مشاوره دکوراسیون رایگان</h3>
+        <p>کارشناسان ما در انتخاب مدل و رنگ مناسب همراه شما هستند.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="container reveal cv-auto">
+    <div class="heading">
+      <p class="eyebrow">نظر مشتریان</p>
+      <h2>حرف‌های واقعی، خانه‌های واقعی</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">«کیفیت مبل آریا واقعاً فراتر از انتظارم بود. پارچه‌اش نرم و بادوامه و رنگش دقیقاً مثل عکس سایت بود.»</p>
+        <div class="testi-person"><div class="avatar">م.ا</div><div><div class="testi-name">مریم احمدی</div><div class="testi-role">همدان</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">«مشاوره تلفنی قبل از خرید خیلی کمکم کرد رنگ درست رو برای پذیرایی کوچیکم انتخاب کنم.»</p>
+        <div class="testi-person"><div class="avatar">ع.ر</div><div><div class="testi-name">علی رضایی</div><div class="testi-role">اراک</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">«مبل رویال دقیقاً همون حس کلاسیک و لوکسی رو داد که دنبالش بودم. ارسال هم خیلی سریع بود.»</p>
+        <div class="testi-person"><div class="avatar">س.ک</div><div><div class="testi-name">سارا کریمی</div><div class="testi-role">ملایر</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container reveal cv-auto">
+    <div class="newsletter">
+      <h2>از تخفیف‌های ویژه باخبر شوید</h2>
+      <p>ایمیل خود را وارد کنید تا از جدیدترین محصولات و پیشنهادهای نیکا مبل مطلع شوید.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('عضویت شما با موفقیت ثبت شد'); this.reset();">
+        <input type="email" placeholder="ایمیل شما..." required />
+        <button class="btn btn-primary" type="submit">عضویت</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<div id="view-products" class="view view-hidden">
+  <div class="page-header">
+    <div class="container">
+      <h1>همه محصولات نیکا مبل</h1>
+      <p>مجموعه‌ای کامل از مبلمان مدرن و کلاسیک — از نشیمن راحتی تا میز ناهارخوری و اکسسوری.</p>
+    </div>
+  </div>
+  <div class="container" style="padding:52px 0 96px;">
+    <div class="filter-bar" id="filterBar"></div>
+    <div class="toolbar-row">
+      <p class="result-count" id="resultCount"></p>
+      <select class="sort-select" id="sortSelect" onchange="setSort(this.value)">
+        <option value="newest">جدیدترین</option>
+        <option value="cheapest">ارزان‌ترین</option>
+        <option value="expensive">گران‌ترین</option>
+        <option value="popular">محبوب‌ترین</option>
+      </select>
+    </div>
+    <div class="prod-grid" id="allProdGrid"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h3>نیکا مبل</h3>
+      <p style="font-size:13.5px;opacity:.6;max-width:320px;">زیبایی خانه، با انتخابی ماندگار. نمایشگاه تخصصی مبلمان مدرن و کلاسیک با تعهد به کیفیت و طراحی اصیل ایرانی.</p>
+    </div>
+    <div><h4>دسترسی سریع</h4><ul><li><a onclick="goTo('products')">محصولات</a></li><li><a onclick="goTo('home')">درباره ما</a></li><li><a href="#">مجله نیکا مبل</a></li><li><a onclick="goTo('home')">تماس با ما</a></li></ul></div>
+    <div><h4>خدمات مشتریان</h4><ul><li><a href="#">حساب کاربری</a></li><li><a onclick="openCart()">سبد خرید</a></li><li><a href="#">ورود مدیریت</a></li></ul></div>
+    <div><h4>ارتباط با ما</h4><ul><li>ملایر، شهرک صنعتی، نیکا مبل ملایر</li><li>۰۹۱۸۳۵۳۳۵۶۵ (صفری)</li><li>شنبه تا پنجشنبه، ۹ تا ۲۱</li></ul></div>
+  </div>
+  <div class="footer-bottom">© ۲۰۲۶ نیکا مبل — تمامی حقوق محفوظ است.</div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> سبد خرید</h3>
+    <button class="cart-close" onclick="closeCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <div class="cart-items" id="cartItemsWrap"></div>
+  <div class="cart-footer" id="cartFooter"></div>
+</aside>
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span id="toastText"></span></div>
+
+<script>
+  const IMG = {"hero":"https://commons.wikimedia.org/wiki/Special:FilePath/Cozy%20living%20room%20with%20a%20view%20of%20the%20lake%20and%20trees%20in%20the%20background%20at%20midday.jpg?width=2000","casualSofa":"https://commons.wikimedia.org/wiki/Special:FilePath/Cozy%20living%20room%20with%20a%20gray%20sofa.jpg?width=900","classicSofa":"https://commons.wikimedia.org/wiki/Special:FilePath/Living%20Room%20with%20Modern%20Regency%20Style%20(4140811059).jpg?width=900","sectionalSofa":"https://commons.wikimedia.org/wiki/Special:FilePath/Cozy%20living%20space%20with%20natural%20light%2C%20plush%20sofa%2C%20and%20minimalist%20decor%20in%20an%20attic%20setting.jpg?width=900","sofaBed":"https://commons.wikimedia.org/wiki/Special:FilePath/Cozy%20living%20room%20setup%20with%20a%20warm%20sofa%2C%20coffee%20cup%2C%20and%20an%20open%20book%20in%20a%20softly%20lit%20environment.jpg?width=900","diningTable":"https://commons.wikimedia.org/wiki/Special:FilePath/Set%20dinner%20table.jpg?width=900","diningChair":"https://commons.wikimedia.org/wiki/Special:FilePath/Dining%20table%20for%20two.jpg?width=900","coffeeTable":"https://commons.wikimedia.org/wiki/Special:FilePath/Dining%20Table.JPG?width=900","accessory":"https://commons.wikimedia.org/wiki/Special:FilePath/Art%20Deco%20table%2C%20chairs%2C%20carpet.jpg?width=900","armchair":"https://commons.wikimedia.org/wiki/Special:FilePath/Cozy%20reading%20corner%20with%20vintage%20decor%20and%20modern%20lighting%20in%20a%20sunlit%20living%20space.jpg?width=900","bedroom":"https://commons.wikimedia.org/wiki/Special:FilePath/Bedroom%20furniture%20by%20Charles%20Rennie%20Mackintosh.jpg?width=900"};
+  const CATS = [{"slug":"mobl-rahati","name":"مبل راحتی","img":"casualSofa"},{"slug":"mobl-classic","name":"مبل کلاسیک","img":"classicSofa"},{"slug":"mobl-l","name":"مبل ال","img":"sectionalSofa"},{"slug":"mobl-takhtekhabshow","name":"مبل تختخواب‌شو","img":"sofaBed"},{"slug":"miz-naharkhori","name":"میز ناهارخوری","img":"diningTable"},{"slug":"sandali","name":"صندلی","img":"diningChair"},{"slug":"miz-jolo-mobli","name":"میز جلو مبلی","img":"coffeeTable"},{"slug":"accessory","name":"اکسسوری","img":"accessory"}];
+  const products = [{"id":1,"cat":"mobl-rahati","name":"نیکا مدل آریا","price":44900000,"old":48500000,"img":"casualSofa","stock":6,"featured":true,"popular":true,"added":30},{"id":2,"cat":"mobl-classic","name":"نیکا مدل رویال","price":67000000,"old":null,"img":"classicSofa","stock":3,"featured":true,"popular":true,"added":29},{"id":3,"cat":"mobl-l","name":"نیکا مدل لونا","price":54900000,"old":59800000,"img":"sectionalSofa","stock":5,"featured":true,"popular":true,"added":28},{"id":4,"cat":"mobl-rahati","name":"نیکا مدل آتریسا","price":42000000,"old":null,"img":"casualSofa","stock":8,"featured":true,"popular":false,"added":27},{"id":5,"cat":"mobl-classic","name":"نیکا مدل ورسای","price":68000000,"old":72500000,"img":"classicSofa","stock":2,"featured":false,"popular":true,"added":26},{"id":6,"cat":"mobl-l","name":"نیکا مدل ارکیده","price":63500000,"old":null,"img":"sectionalSofa","stock":4,"featured":false,"popular":false,"added":25},{"id":7,"cat":"mobl-takhtekhabshow","name":"نیکا مدل تابان","price":35500000,"old":38900000,"img":"sofaBed","stock":7,"featured":false,"popular":true,"added":24},{"id":8,"cat":"mobl-takhtekhabshow","name":"نیکا مدل شبنم","price":34500000,"old":null,"img":"sofaBed","stock":5,"featured":false,"popular":false,"added":23},{"id":9,"cat":"miz-naharkhori","name":"میز ناهارخوری النا","price":28500000,"old":null,"img":"diningTable","stock":6,"featured":true,"popular":true,"added":22},{"id":10,"cat":"miz-naharkhori","name":"میز ناهارخوری سپید","price":31900000,"old":34900000,"img":"diningTable","stock":2,"featured":false,"popular":false,"added":21},{"id":11,"cat":"miz-naharkhori","name":"میز ناهارخوری دونفره بهار","price":12800000,"old":null,"img":"diningTable","stock":10,"featured":false,"popular":false,"added":20},{"id":12,"cat":"sandali","name":"صندلی ناهارخوری تاک (بسته ۲ عددی)","price":8900000,"old":9800000,"img":"diningChair","stock":12,"featured":false,"popular":true,"added":19},{"id":13,"cat":"sandali","name":"صندلی کلاسیک نسترن","price":11500000,"old":null,"img":"diningChair","stock":9,"featured":false,"popular":false,"added":18},{"id":14,"cat":"miz-jolo-mobli","name":"میز جلو مبلی سحر","price":12900000,"old":14200000,"img":"coffeeTable","stock":8,"featured":true,"popular":false,"added":17},{"id":15,"cat":"miz-jolo-mobli","name":"میز جلو مبلی مینا","price":10800000,"old":null,"img":"coffeeTable","stock":11,"featured":false,"popular":false,"added":16},{"id":16,"cat":"mobl-rahati","name":"مبل تک‌نفره پارسا","price":16900000,"old":18500000,"img":"armchair","stock":7,"featured":true,"popular":true,"added":15},{"id":17,"cat":"accessory","name":"ست کوسن تزئینی نیکا","price":3200000,"old":null,"img":"accessory","stock":20,"featured":false,"popular":true,"added":14},{"id":18,"cat":"accessory","name":"رومیزی کلاسیک زرین","price":2100000,"old":null,"img":"accessory","stock":15,"featured":false,"popular":false,"added":13},{"id":19,"cat":"mobl-rahati","name":"نیکا مدل نسیم","price":39900000,"old":null,"img":"casualSofa","stock":5,"featured":false,"popular":false,"added":12},{"id":20,"cat":"mobl-classic","name":"نیکا مدل سلطنتی","price":74500000,"old":null,"img":"classicSofa","stock":2,"featured":false,"popular":false,"added":11},{"id":21,"cat":"mobl-l","name":"نیکا مدل دیانا","price":58900000,"old":null,"img":"sectionalSofa","stock":4,"featured":false,"popular":true,"added":10},{"id":22,"cat":"mobl-takhtekhabshow","name":"نیکا مدل مهتاب","price":36900000,"old":null,"img":"sofaBed","stock":6,"featured":false,"popular":false,"added":9},{"id":23,"cat":"sandali","name":"صندلی ناهارخوری یاس (بسته ۲ عددی)","price":9600000,"old":null,"img":"diningChair","stock":14,"featured":false,"popular":false,"added":8},{"id":24,"cat":"miz-jolo-mobli","name":"میز جلو مبلی رز","price":13400000,"old":15500000,"img":"coffeeTable","stock":0,"featured":false,"popular":false,"added":7}];
+
+  document.getElementById('heroImg').src = IMG.hero;
+
+  function toFa(n){ return String(n).replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]); }
+  function toman(n){ return toFa(n.toLocaleString('en-US')) + ' تومان'; }
+  const catName = slug => CATS.find(c => c.slug===slug)?.name || '';
+  const catImg = slug => IMG[CATS.find(c => c.slug===slug)?.img] || IMG.casualSofa;
+
+  let cart = [];
+  let wishlist = new Set();
+
+  document.getElementById('catGrid').innerHTML = CATS.slice(0,4).map(c => `
+    <a class="cat-card" onclick="goToCategory('${c.slug}')"><img src="${IMG[c.img]}" loading="lazy"><div class="cat-label"><span>${c.name}</span><small>مشاهده محصولات ←</small></div></a>
+  `).join('');
+
+  function prodCard(p){
+    const disc = p.old ? Math.round(100 - (p.price/p.old)*100) : null;
+    return `
+    <div class="prod-card">
+      <div class="prod-img">
+        ${disc ? `<span class="badge">${toFa(disc)}٪ تخفیف</span>` : (p.stock===0 ? `<span class="badge-oos">ناموجود</span>` : '')}
+        <button class="wish-btn ${wishlist.has(p.id)?'active':''}" onclick="toggleWish(this, ${p.id})">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </button>
+        <img src="${IMG[p.img]}" alt="${p.name}" loading="lazy">
+        <div class="quick-view">مشاهده سریع</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">${catName(p.cat)}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="price-row"><span class="price">${toman(p.price)}</span>${p.old ? `<span class="old-price">${toman(p.old)}</span>` : ''}</div>
+        <div class="prod-actions">
+          <button class="view-btn" onclick="showToast('صفحه محصول در نسخه کامل سایت فعال است')">مشاهده جزئیات</button>
+          <button class="cart-btn" ${p.stock===0?'disabled':''} onclick="addToCart(this, ${p.id})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  document.getElementById('featuredGrid').innerHTML = products.filter(p=>p.featured).map(prodCard).join('');
+
+  let activeCat = 'all';
+  let activeSort = 'newest';
+  function renderFilterBar(){
+    const chips = [{slug:'all', name:'همه محصولات'}, ...CATS];
+    document.getElementById('filterBar').innerHTML = chips.map(c => `
+      <button class="chip ${activeCat===c.slug?'active':''}" onclick="setCategory('${c.slug}')">${c.name}</button>
+    `).join('');
+  }
+  function setCategory(slug){ activeCat = slug; renderFilterBar(); renderProductsPage(); }
+  function setSort(val){ activeSort = val; renderProductsPage(); }
+  function goToCategory(slug){ goTo('products'); activeCat = slug; renderFilterBar(); renderProductsPage(); }
+  function sortList(list){
+    const arr = [...list];
+    switch(activeSort){
+      case 'cheapest': return arr.sort((a,b)=>a.price-b.price);
+      case 'expensive': return arr.sort((a,b)=>b.price-a.price);
+      case 'popular': return arr.sort((a,b)=> (b.popular===true) - (a.popular===true));
+      case 'newest':
+      default: return arr.sort((a,b)=> b.added - a.added);
+    }
+  }
+  function renderProductsPage(){
+    let list = activeCat==='all' ? products : products.filter(p=>p.cat===activeCat);
+    list = sortList(list);
+    document.getElementById('resultCount').textContent = `${toFa(list.length)} محصول یافت شد`;
+    document.getElementById('sortSelect').value = activeSort;
+    document.getElementById('allProdGrid').innerHTML = list.map(prodCard).join('');
+  }
+  renderFilterBar();
+  renderProductsPage();
+
+  function goTo(view){
+    const home = document.getElementById('view-home');
+    const prod = document.getElementById('view-products');
+    if (view==='home'){ home.classList.remove('view-hidden'); prod.classList.add('view-hidden'); }
+    else { prod.classList.remove('view-hidden'); home.classList.add('view-hidden'); }
+    document.querySelectorAll('.nav-link').forEach(a => a.classList.toggle('active', a.dataset.view===view));
+    window.scrollTo(0,0);
+    mobileMenu.classList.remove('open');
+    if (view==='products') { renderFilterBar(); renderProductsPage(); }
+  }
+
+  function findProduct(id){ return products.find(p=>p.id===id); }
+
+  function addToCart(btn, id){
+    const p = findProduct(id);
+    if (!p || p.stock===0) return;
+    const existing = cart.find(i=>i.id===id);
+    if (existing) existing.qty = Math.min(existing.qty+1, p.stock);
+    else cart.push({ id:p.id, name:p.name, price:p.price, img:IMG[p.img], qty:1 });
+    if(btn){ btn.classList.remove('pulsing'); void btn.offsetWidth; btn.classList.add('pulsing'); }
+    updateCartUI();
+    showToast(p.name + ' به سبد خرید اضافه شد');
+  }
+  function changeQty(id, delta){
+    const item = cart.find(i=>i.id===id);
+    if (!item) return;
+    const p = findProduct(id);
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter(i=>i.id!==id);
+    else if (p) item.qty = Math.min(item.qty, p.stock);
+    updateCartUI();
+  }
+  function removeFromCart(id){
+    cart = cart.filter(i=>i.id!==id);
+    updateCartUI();
+    showToast('محصول از سبد خرید حذف شد');
+  }
+  function toggleWish(btn, id){
+    const active = btn.classList.toggle('active');
+    if (active) wishlist.add(id); else wishlist.delete(id);
+    updatePill('wishCount', wishlist.size);
+  }
+  function updatePill(elId, val){
+    const el = document.getElementById(elId);
+    el.textContent = toFa(val);
+    el.classList.toggle('show', val>0);
+  }
+
+  function updateCartUI(){
+    const totalQty = cart.reduce((s,i)=>s+i.qty,0);
+    updatePill('cartCount', totalQty);
+
+    const wrap = document.getElementById('cartItemsWrap');
+    const footer = document.getElementById('cartFooter');
+
+    if (cart.length===0){
+      wrap.innerHTML = `<div class="cart-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <p>سبد خرید شما خالی است</p>
+      </div>`;
+      footer.innerHTML = `<button class="btn btn-outline" style="width:100%;justify-content:center;" onclick="closeCart(); goTo('products');">مشاهده محصولات</button>`;
+      return;
+    }
+
+    wrap.innerHTML = cart.map(i => `
+      <div class="cart-item">
+        <img src="${i.img}" alt="${i.name}" loading="lazy">
+        <div class="cart-item-info">
+          <div>
+            <div class="cart-item-name">${i.name}</div>
+            <div class="cart-item-price">${toman(i.price)}</div>
+          </div>
+          <div class="qty-row">
+            <div class="qty-stepper">
+              <button onclick="changeQty(${i.id}, 1)">+</button>
+              <span>${toFa(i.qty)}</span>
+              <button onclick="changeQty(${i.id}, -1)">−</button>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${i.id})">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+              حذف
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+    const shipping = subtotal > 50000000 ? 0 : 900000;
+    footer.innerHTML = `
+      <div class="cart-row"><span>جمع کالاها</span><span>${toman(subtotal)}</span></div>
+      <div class="cart-row"><span>هزینه ارسال</span><span>${shipping===0?'رایگان':toman(shipping)}</span></div>
+      <div class="cart-total-row"><span>مبلغ نهایی</span><span>${toman(subtotal+shipping)}</span></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showToast('در نسخه کامل سایت به درگاه پرداخت متصل می‌شوید')">ادامه فرآیند خرید</button>
+    `;
+  }
+  updateCartUI();
+
+  function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('overlay').classList.add('open'); }
+  function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
+
+  let toastTimer;
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    document.getElementById('toastText').textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+
+  const header = document.getElementById('header');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking){
+      requestAnimationFrame(() => {
+        header.classList.toggle('scrolled', window.scrollY > 16);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive:true });
+
+  const mobileMenu = document.getElementById('mobileMenu');
+  document.getElementById('burgerBtn').addEventListener('click', () => mobileMenu.classList.add('open'));
+  document.getElementById('closeMenuBtn').addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.getElementById('wishNavBtn').addEventListener('click', () => showToast('علاقه‌مندی‌ها: ' + toFa(wishlist.size) + ' کالا'));
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '40px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
